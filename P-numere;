@@ -1,0 +1,50 @@
+// Online C++ compiler to run C++ program online
+/*Un număr natural nenul se numește p-număr dacă are aceeași paritate cu suma divizorilor săi pozitivi.
+Exemplu: 10 și 25 sunt p-numere (10 are aceeași paritate cu 18=1+2+5+10, iar 25 are aceeași paritate cu 31=1+5+25).
+Scrieți un subprogram cu numele kpn, are trei parametri, a, b și k, în această ordine, prin care primește câte un număr natural din intervalul [1,105] (a≤b). Subprogramul returnează cel de al k-lea p-număr din intervalul [a,b] sau -1, dacă nu există cel puțin k astfel de numere în acest interval. Scrieți definiția completă a subprogramului.
+Exemplu: Dacă a=27, b=50 și k=3, atunci subprogramul returnează 34.
+*/
+#include <iostream>
+using namespace std;
+
+int divizorii(int numar);
+int kpn(int a,int b,int k);
+
+int pozitia=0;
+
+int main() {
+    int a;
+    int b;
+    int k;
+   cout<<"Dati a:"<<endl;
+   cin>>a;
+   cout<<"Dati b:"<<endl;
+   cin>>b;
+   cout<<"Dati k:"<<endl;
+   cin>>k;
+   cout<<kpn(a,b,k);
+}
+int kpn(int a,int b,int k){
+    if(a<b){
+        for(int i=a;i<=b;i++){
+            if(i%2==0 && divizorii(i)%2==0){
+                pozitia+=1;
+            }
+            if(i%2!=0 && divizorii(i)%2!=0){
+                pozitia+=1;
+            }
+            if(pozitia>=k){
+                return i;
+            }
+        }
+    }
+}
+int divizorii(int numar){
+    int suma=0;
+    for(int i=1;i<=numar;i++){
+        if(numar%i==0){
+            suma+=i;
+        }
+    }
+    return suma;
+}
