@@ -1,0 +1,30 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;
+int sumafactcifre(int n);
+int main() {
+    // Write C++ code here
+    cout << "Dati numarul: ";
+    int x;
+    cin >> x;
+    cout<<"\n";
+    cout << sumafactcifre(x);
+
+    return 0;
+}
+
+int sumafactcifre(int n){
+    int suma=0;
+    int produs=1;
+    int cifra;
+    while(n!=0){
+        cifra=n%10;
+        n=n/10;
+        for(int i=1;i<=cifra;i++){
+            produs*=i;
+        }
+        suma+=produs;
+        produs=1;
+    }
+    return suma;
+}
